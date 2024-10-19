@@ -43,7 +43,6 @@ export default function Menu() {
             if (!filterRef.current || !menuRef.current || !contentRef.current || originalFilterTop === null) return;
 
             const filterRect = filterRef.current.getBoundingClientRect();
-            const menuRect = menuRef.current.getBoundingClientRect();
             const contentRect = contentRef.current.getBoundingClientRect();
             const currentScroll = window.scrollY;
 
