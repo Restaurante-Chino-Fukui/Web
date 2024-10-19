@@ -1,29 +1,53 @@
 'use client'
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
-const menuItems = [
-    { name: "Pan Chino", price: "2,00€", image: "/pan-chino.jpg", category: "Entrantes" },
-    { name: "Ensalada China", price: "3,90€", image: "/ensalada-china.jpg", category: "Entrantes" },
-    { name: "Rollo De Primavera", price: "2,00€", image: "/rollo-primavera.jpg", category: "Entrantes" },
-    { name: "Rollo Con Ensalada", price: "3,90€", image: "/rollo-ensalada.jpg", category: "Entrantes" },
-    { name: "Ramen Tonkotsu", price: "14€", image: "/ramen.jpg", category: "Fideos" },
-    { name: "Tempura Mixta", price: "12€", image: "/tempura.jpg", category: "Frituras" },
-    { name: "Sushi Variado", price: "18€", image: "/sushi.jpg", category: "Sushi" },
-    { name: "Gyoza de Cerdo", price: "8€", image: "/gyoza.jpg", category: "Entrantes" },
-    { name: "Pollo Teriyaki", price: "15€", image: "/teriyaki.jpg", category: "Pollo" },
-    { name: "Arroz Frito", price: "10€", image: "/fried-rice.jpg", category: "Arroz" },
-    { name: "Salmón a la Parrilla", price: "16€", image: "/grilled-salmon.jpg", category: "Pescado" },
-    { name: "Udon con Verduras", price: "13€", image: "/udon.jpg", category: "Fideos" },
-];
-
-const categories = ["Todos", ...Array.from(new Set(menuItems.map(item => item.category)))];
+interface Plato {
+    id: number;
+    nombre: string;
+    precio: number;
+    imagen: string;
+    categoria: string;
+}
 
 export default function Menu() {
-    const [filter, setFilter] = useState("Todos");
+    const [platos, setPlatos] = useState<Plato[]>([]);
+    const [categorias, setCategorias] = useState<string[]>([]);
+    const [filtro, setFiltro] = useState("Todos");
     const [isSticky, setIsSticky] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
     const filterRef = useRef<HTMLDivElement>(null);
     const menuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const obtenerPlatos = async () => {
+            try {
+                const platosCollection = collection(db, 'platos');
+                const platosSnapshot = await getDocs(platosCollection);
+                const platosLista = platosSnapshot.docs.map(doc => ({
+                    id: doc.data().id,
+                    nombre: doc.data().nombre,
+                    precio: doc.data().precio,
+                    imagen: doc.data().imagen,
+                    categoria: doc.data().categoria
+                })) as Plato[];
+                setPlatos(platosLista);
+                const categoriasUnicas = ["Todos", ...Array.from(new Set(platosLista.map(plato => plato.categoria)))];
+                setCategorias(categoriasUnicas);
+                setLoading(false);
+            } catch (err) {
+                console.error("Error al obtener los platos:", err);
+                setError("Hubo un problema al cargar el menú. Por favor, intenta de nuevo más tarde.");
+                setLoading(false);
+            }
+        };
+
+        obtenerPlatos();
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -41,6 +65,9 @@ export default function Menu() {
         };
     }, [filterRef, menuRef]);
 
+    if (loading) return <div>Cargando menú...</div>;
+    if (error) return <div>{error}</div>;
+
     return (
         <section id="menu" className="py-24 bg-gray-100" ref={menuRef}>
             <div className="container mx-auto px-4">
@@ -48,41 +75,41 @@ export default function Menu() {
 
                 <div ref={filterRef} className={`${isSticky ? 'sticky top-0 bg-gray-100 py-4 z-10' : ''}`}>
                     <div className="flex justify-center mb-12 space-x-4 flex-wrap">
-                        {categories.map((category) => (
+                        {categorias.map((categoria) => (
                             <button
-                                key={category}
-                                onClick={() => setFilter(category)}
-                                className={`px-4 py-2 rounded-full ${filter === category
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-white text-indigo-600 hover:bg-indigo-100'
+                                key={categoria}
+                                onClick={() => setFiltro(categoria)}
+                                className={`px-4 py-2 rounded-full ${filtro === categoria
+                                        ? 'bg-indigo-600 text-white'
+                                        : 'bg-white text-indigo-600 hover:bg-indigo-100'
                                     } transition-colors duration-200 mb-2`}
                             >
-                                {category}
+                                {categoria}
                             </button>
                         ))}
                     </div>
                 </div>
 
-                {categories.slice(1).map((category) => (
-                    <div key={category} className="mb-16">
-                        <h3 className="text-4xl font-bold mb-8 text-black">{category}</h3>
+                {categorias.slice(1).map((categoria) => (
+                    <div key={categoria} className="mb-16">
+                        <h3 className="text-4xl font-bold mb-8 text-black">{categoria}</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {menuItems
-                                .filter(item => filter === "Todos" || item.category === filter)
-                                .filter(item => item.category === category)
-                                .map((item, index) => (
-                                    <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                            {platos
+                                .filter(plato => filtro === "Todos" || plato.categoria === filtro)
+                                .filter(plato => plato.categoria === categoria)
+                                .map((plato) => (
+                                    <div key={plato.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                                         <div className="relative h-48">
                                             <Image
-                                                src={item.image}
-                                                alt={item.name}
+                                                src={plato.imagen}
+                                                alt={plato.nombre}
                                                 layout="fill"
                                                 objectFit="cover"
                                             />
                                         </div>
                                         <div className="p-4">
-                                            <h4 className="text-lg font-semibold mb-2 text-black">{item.name}</h4>
-                                            <p className="text-indigo-600 font-bold">{item.price}</p>
+                                            <h4 className="text-lg font-semibold mb-2 text-black">{plato.nombre}</h4>
+                                            <p className="text-indigo-600 font-bold">${plato.precio.toFixed(2)}</p>
                                         </div>
                                     </div>
                                 ))}
