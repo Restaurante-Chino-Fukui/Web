@@ -43,11 +43,12 @@ export default function Menu() {
             if (!filterRef.current || !menuRef.current || !contentRef.current || originalFilterTop === null) return;
 
             const filterRect = filterRef.current.getBoundingClientRect();
+            const menuRect = menuRef.current.getBoundingClientRect();
             const contentRect = contentRef.current.getBoundingClientRect();
             const currentScroll = window.scrollY;
 
             if (currentScroll >= originalFilterTop - HEADER_HEIGHT &&
-                currentScroll + filterRect.height + HEADER_HEIGHT < contentRect.bottom) {
+                contentRect.bottom > filterRect.height + HEADER_HEIGHT) {
                 setIsSticky(true);
             } else {
                 setIsSticky(false);
@@ -107,16 +108,13 @@ export default function Menu() {
             <div className="container mx-auto px-4">
                 <h2 className="text-5xl font-bold text-center mb-16 text-black">Nuestro Menú</h2>
 
-                {/* Div espaciador que solo aparece cuando el filtro está fijo */}
                 {isSticky && (
                     <div style={{ height: `${filterHeight}px` }} />
                 )}
 
                 <div
                     ref={filterRef}
-                    className={`transition-all duration-300 ${isSticky
-                        ? 'fixed left-0 right-0 py-4 z-10'
-                        : ''
+                    className={`transition-all duration-300 ${isSticky ? 'fixed left-0 right-0 py-4 z-10' : ''
                         }`}
                     style={{
                         top: isSticky ? `${HEADER_HEIGHT}px` : 'auto',
@@ -131,8 +129,8 @@ export default function Menu() {
                                     key={categoria}
                                     onClick={() => handleCategoryClick(categoria)}
                                     className={`px-4 py-2 rounded-full transition-all duration-300 ${filtro === categoria
-                                            ? 'bg-indigo-600 text-white transform scale-105'
-                                            : 'bg-white border border-gray-300 text-indigo-600 hover:bg-indigo-100'
+                                        ? 'bg-indigo-600 text-white transform scale-105'
+                                        : 'bg-white border border-gray-300 text-indigo-600 hover:bg-indigo-100'
                                         } ${animatingCategory === categoria
                                             ? 'animate-pulse'
                                             : ''
