@@ -21,6 +21,7 @@ export default function Menu() {
     const [error, setError] = useState<string | null>(null);
     const [originalFilterTop, setOriginalFilterTop] = useState<number | null>(null);
     const [filterHeight, setFilterHeight] = useState(0);
+    const [animatingCategory, setAnimatingCategory] = useState<string | null>(null);
 
     const filterRef = useRef<HTMLDivElement>(null);
     const menuRef = useRef<HTMLDivElement>(null);
@@ -93,6 +94,14 @@ export default function Menu() {
 
     const platosFiltrados = platos.filter(plato => filtro === "Todos" || plato.categoria === filtro);
 
+    const handleCategoryClick = (categoria: string) => {
+        setAnimatingCategory(categoria);
+        setTimeout(() => {
+            setAnimatingCategory(null);
+            setFiltro(categoria);
+        }, 300); // Duración de la animación
+    };
+
     return (
         <section id="menu" className="py-24 bg-gray-100" ref={menuRef}>
             <div className="container mx-auto px-4">
@@ -120,10 +129,13 @@ export default function Menu() {
                             {categorias.map((categoria) => (
                                 <button
                                     key={categoria}
-                                    onClick={() => setFiltro(categoria)}
+                                    onClick={() => handleCategoryClick(categoria)}
                                     className={`px-4 py-2 rounded-full transition-all duration-300 ${filtro === categoria
-                                        ? 'bg-indigo-600 text-white transform scale-105'
-                                        : 'bg-white border border-gray-300 text-indigo-600 hover:bg-indigo-100'
+                                            ? 'bg-indigo-600 text-white transform scale-105'
+                                            : 'bg-white border border-gray-300 text-indigo-600 hover:bg-indigo-100'
+                                        } ${animatingCategory === categoria
+                                            ? 'animate-pulse'
+                                            : ''
                                         }`}
                                 >
                                     {categoria}
