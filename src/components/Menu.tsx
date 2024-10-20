@@ -14,46 +14,52 @@ interface Plato {
 }
 const platosParaInsertar = [
     {
-        codigo: "2",
-        nombre: "ENSALADA CHINA",
-        precio: 4.50,
-        categoria: "Ensaladas"
+        codigo: "8",
+        nombre: "PAN CHINO",
+        precio: 2.15,
+        categoria: "Entrantes"
     },
     {
-        codigo: "3",
-        nombre: "ENSALADA DE BROTES DE SOJA",
-        precio: 4.95,
-        categoria: "Ensaladas"
+        codigo: "9",
+        nombre: "ROLLO DE PRIMAVERA",
+        precio: 2.15,
+        categoria: "Entrantes"
     },
     {
-        codigo: "3B",
-        nombre: "ENSALADA BROTES DE SOJA CON ALGAS",
-        precio: 5.95,
-        categoria: "Ensaladas"
+        codigo: "9A",
+        nombre: "ROLLITOS DE OTOÑO VEGETAL (2 UND.)",
+        precio: 3.50,
+        categoria: "Entrantes"
     },
     {
-        codigo: "4",
-        nombre: "ENSALADA DE GAMBAS",
-        precio: 5.95,
-        categoria: "Ensaladas"
+        codigo: "9B",
+        nombre: "ROLLITOS VIETNAMITAS (2 UND.)",
+        precio: 3.50,
+        categoria: "Entrantes"
     },
     {
-        codigo: "5",
-        nombre: "ENSALADA DE MARISCOS",
-        precio: 5.95,
-        categoria: "Ensaladas"
+        codigo: "10",
+        nombre: "WANTUN FRITO",
+        precio: 3.95,
+        categoria: "Entrantes"
     },
     {
-        codigo: "1C",
-        nombre: "ENSALADA WAKAME",
-        precio: 5.95,
-        categoria: "Ensaladas"
+        codigo: "11",
+        nombre: "ENSALADA CON ROLLITO",
+        precio: 5.00,
+        categoria: "Entrantes"
     },
     {
-        codigo: "7",
-        nombre: "ENSALADA CHINA AGRIDULCE",
-        precio: 4.95,
-        categoria: "Ensaladas"
+        codigo: "12",
+        nombre: "PAN DE GAMBAS FRITO",
+        precio: 2.80,
+        categoria: "Entrantes"
+    },
+    {
+        codigo: "5C",
+        nombre: "EMPANADILLAS CHINAS FRITAS",
+        precio: 6.80,
+        categoria: "Entrantes"
     }
 ];
 
@@ -70,7 +76,7 @@ async function insertarPlatos() {
 }
 
 // Llamar a la función para insertar los platos
-// insertarPlatos();
+//insertarPlatos();
 
 export default function Menu() {
     const [platos, setPlatos] = useState<Plato[]>([]);
@@ -88,6 +94,7 @@ export default function Menu() {
     const contentRef = useRef<HTMLDivElement>(null);
 
     const HEADER_HEIGHT = 60; // Altura del header en píxeles
+    const FILTER_MARGIN = 32; // Margen adicional para el filtro (ajusta según sea necesario)
 
     useEffect(() => {
         if (filterRef.current) {
@@ -174,8 +181,9 @@ export default function Menu() {
 
     useEffect(() => {
         if (contentRef.current && originalFilterTop !== null) {
+            const scrollToPosition = Math.max(0, originalFilterTop - HEADER_HEIGHT - FILTER_MARGIN);
             window.scrollTo({
-                top: Math.max(0, originalFilterTop - HEADER_HEIGHT),
+                top: scrollToPosition,
                 behavior: 'smooth'
             });
         }
@@ -202,7 +210,7 @@ export default function Menu() {
                 <h2 className="text-4xl font-bold text-center mb-8 text-black">Nuestro Menú</h2>
 
                 {isSticky && (
-                    <div style={{ height: `${filterRef.current?.offsetHeight}px` }} />
+                    <div style={{ height: `${filterHeight + FILTER_MARGIN}px` }} />
                 )}
 
                 <div
@@ -233,7 +241,7 @@ export default function Menu() {
                     </div>
                 </div>
 
-                <div ref={contentRef}>
+                <div ref={contentRef} className={`mt-${FILTER_MARGIN / 4}`}>
                     {categoriasAMostrar.map((categoria) => (
                         <div key={categoria} className="mb-12">
                             <h3 className="text-2xl font-semibold mb-6 text-black">{categoria}</h3>
