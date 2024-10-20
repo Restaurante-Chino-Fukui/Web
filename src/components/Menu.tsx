@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { db, storage } from '../config/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
 
 interface Plato {
@@ -12,6 +12,65 @@ interface Plato {
     imagen: string;
     categoria: string;
 }
+const platosParaInsertar = [
+    {
+        codigo: "2",
+        nombre: "ENSALADA CHINA",
+        precio: 4.50,
+        categoria: "Ensaladas"
+    },
+    {
+        codigo: "3",
+        nombre: "ENSALADA DE BROTES DE SOJA",
+        precio: 4.95,
+        categoria: "Ensaladas"
+    },
+    {
+        codigo: "3B",
+        nombre: "ENSALADA BROTES DE SOJA CON ALGAS",
+        precio: 5.95,
+        categoria: "Ensaladas"
+    },
+    {
+        codigo: "4",
+        nombre: "ENSALADA DE GAMBAS",
+        precio: 5.95,
+        categoria: "Ensaladas"
+    },
+    {
+        codigo: "5",
+        nombre: "ENSALADA DE MARISCOS",
+        precio: 5.95,
+        categoria: "Ensaladas"
+    },
+    {
+        codigo: "1C",
+        nombre: "ENSALADA WAKAME",
+        precio: 5.95,
+        categoria: "Ensaladas"
+    },
+    {
+        codigo: "7",
+        nombre: "ENSALADA CHINA AGRIDULCE",
+        precio: 4.95,
+        categoria: "Ensaladas"
+    }
+];
+
+// Función para insertar los platos en la base de datos
+async function insertarPlatos() {
+    for (const plato of platosParaInsertar) {
+        try {
+            await addDoc(collection(db, "platos"), plato);
+            console.log(`Plato ${plato.nombre} insertado correctamente`);
+        } catch (error) {
+            console.error(`Error al insertar el plato ${plato.nombre}:`, error);
+        }
+    }
+}
+
+// Llamar a la función para insertar los platos
+// insertarPlatos();
 
 export default function Menu() {
     const [platos, setPlatos] = useState<Plato[]>([]);
@@ -22,9 +81,10 @@ export default function Menu() {
     const [isSticky, setIsSticky] = useState(false);
     const [originalFilterTop, setOriginalFilterTop] = useState<number | null>(null);
     const [filterHeight, setFilterHeight] = useState(0);
+    const [isAtBottom, setIsAtBottom] = useState(false);
 
     const filterRef = useRef<HTMLDivElement>(null);
-    const menuRef = useRef<HTMLDivElement>(null);
+    const menuRef = useRef<HTMLElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
 
     const HEADER_HEIGHT = 60; // Altura del header en píxeles
@@ -32,29 +92,51 @@ export default function Menu() {
     useEffect(() => {
         const obtenerPlatos = async () => {
             try {
+                setLoading(true);
                 const platosCollection = collection(db, 'platos');
                 const platosSnapshot = await getDocs(platosCollection);
-                const platosPromises = platosSnapshot.docs.map(async (doc) => {
-                    const data = doc.data() as Omit<Plato, 'imagen'>;
+                let platosLista = await Promise.all(platosSnapshot.docs.map(async doc => {
+                    const datoPlato = doc.data() as Omit<Plato, 'id' | 'imagen'>;
                     try {
-                        const imageRef = ref(storage, `platos/${data.codigo}.jpg`);
-                        const imageUrl = await getDownloadURL(imageRef);
-                        return { ...data, imagen: imageUrl };
-                    } catch (error) {
-                        console.error(`Error al obtener la imagen para el plato ${data.codigo}:`, error);
-                        return { ...data, imagen: '' };
+                        const imagenRef = ref(storage, `platos/${datoPlato.codigo}.jpg`);
+                        const imagenURL = await getDownloadURL(imagenRef);
+                        return {
+                            id: doc.id,
+                            ...datoPlato,
+                            imagen: imagenURL
+                        };
+                    } catch (imgError) {
+                        console.error(`Error al cargar la imagen para ${datoPlato.codigo}:`, imgError);
+                        return {
+                            id: doc.id,
+                            ...datoPlato,
+                            imagen: '' // O una URL de imagen por defecto
+                        };
                     }
+                }));
+
+                // Ordenar platos por categoría y luego por código
+                platosLista.sort((a, b) => {
+                    if (a.categoria !== b.categoria) {
+                        return a.categoria.localeCompare(b.categoria);
+                    }
+                    // Extraer números del código para comparación numérica
+                    const numA = parseInt(a.codigo.replace(/\D/g, ''));
+                    const numB = parseInt(b.codigo.replace(/\D/g, ''));
+                    if (numA !== numB) {
+                        return numA - numB;
+                    }
+                    // Si los números son iguales, ordenar alfabéticamente por el código completo
+                    return a.codigo.localeCompare(b.codigo);
                 });
 
-                const platosConImagenes = await Promise.all(platosPromises);
-                setPlatos(platosConImagenes);
-                const categoriasUnicas = ["Todos", ...Array.from(new Set(platosConImagenes.map(plato => plato.categoria)))];
+                setPlatos(platosLista);
+                const categoriasUnicas = ["Todos", ...Array.from(new Set(platosLista.map(plato => plato.categoria)))];
                 setCategorias(categoriasUnicas);
                 setLoading(false);
-            } catch (error) {
-                console.error('Error al obtener los platos:', error);
-                setError('Error al cargar los platos');
-            } finally {
+            } catch (err) {
+                console.error("Error al obtener los platos:", err);
+                setError("Hubo un problema al cargar el menú. Por favor, intenta de nuevo más tarde.");
                 setLoading(false);
             }
         };
@@ -63,23 +145,17 @@ export default function Menu() {
     }, []);
 
     useEffect(() => {
-        if (filterRef.current) {
-            const rect = filterRef.current.getBoundingClientRect();
-            setOriginalFilterTop(rect.top + window.scrollY);
-            setFilterHeight(rect.height);
+        if (filterRef.current && originalFilterTop === null) {
+            setOriginalFilterTop(filterRef.current.getBoundingClientRect().top + window.scrollY);
         }
-    }, [loading]);
 
-    useEffect(() => {
         const handleScroll = () => {
-            if (!filterRef.current || !menuRef.current || !contentRef.current || originalFilterTop === null) return;
+            if (!filterRef.current || !menuRef.current || originalFilterTop === null) return;
 
-            const filterRect = filterRef.current.getBoundingClientRect();
-            const contentRect = contentRef.current.getBoundingClientRect();
+            const menuRect = menuRef.current.getBoundingClientRect();
             const currentScroll = window.scrollY;
 
-            if (currentScroll >= originalFilterTop - HEADER_HEIGHT &&
-                currentScroll + filterRect.height + HEADER_HEIGHT < contentRect.bottom) {
+            if (currentScroll >= originalFilterTop - HEADER_HEIGHT && currentScroll + window.innerHeight < menuRect.bottom) {
                 setIsSticky(true);
             } else {
                 setIsSticky(false);
@@ -102,9 +178,8 @@ export default function Menu() {
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl font-bold text-center mb-8 text-black">Nuestro Menú</h2>
 
-                {/* Div espaciador que solo aparece cuando el filtro está fijo */}
                 {isSticky && (
-                    <div style={{ height: `${filterHeight}px` }} />
+                    <div style={{ height: `${filterRef.current?.offsetHeight}px` }} />
                 )}
 
                 <div
