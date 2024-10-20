@@ -14,52 +14,172 @@ interface Plato {
 }
 const platosParaInsertar = [
     {
-        codigo: "8",
-        nombre: "PAN CHINO",
-        precio: 2.15,
-        categoria: "Entrantes"
+        codigo: "13",
+        nombre: "SOPA DE LA CASA",
+        precio: 4.80,
+        categoria: "Sopas"
     },
     {
-        codigo: "9",
-        nombre: "ROLLO DE PRIMAVERA",
-        precio: 2.15,
-        categoria: "Entrantes"
-    },
-    {
-        codigo: "9A",
-        nombre: "ROLLITOS DE OTOÑO VEGETAL (2 UND.)",
-        precio: 3.50,
-        categoria: "Entrantes"
-    },
-    {
-        codigo: "9B",
-        nombre: "ROLLITOS VIETNAMITAS (2 UND.)",
-        precio: 3.50,
-        categoria: "Entrantes"
-    },
-    {
-        codigo: "10",
-        nombre: "WANTUN FRITO",
+        codigo: "14",
+        nombre: "SOPA DE ALETAS DE TIBURÓN",
         precio: 3.95,
-        categoria: "Entrantes"
+        categoria: "Sopas"
     },
     {
-        codigo: "11",
-        nombre: "ENSALADA CON ROLLITO",
-        precio: 5.00,
-        categoria: "Entrantes"
+        codigo: "16",
+        nombre: "SOPA AGRIPICANTE",
+        precio: 3.95,
+        categoria: "Sopas"
     },
     {
-        codigo: "12",
-        nombre: "PAN DE GAMBAS FRITO",
-        precio: 2.80,
-        categoria: "Entrantes"
+        codigo: "17",
+        nombre: "SOPA DE FIDEOS CON POLLO",
+        precio: 3.95,
+        categoria: "Sopas"
     },
     {
-        codigo: "5C",
-        nombre: "EMPANADILLAS CHINAS FRITAS",
+        codigo: "18",
+        nombre: "SOPA DE MAÍZ CON CANGREJO",
+        precio: 3.95,
+        categoria: "Sopas"
+    },
+    {
+        codigo: "19",
+        nombre: "SOPA DE HUEVOS CON VERDURAS",
+        precio: 3.95,
+        categoria: "Sopas"
+    },
+    {
+        codigo: "21",
+        nombre: "SOPA DE WANTUN",
+        precio: 4.85,
+        categoria: "Sopas"
+    },
+
+    // Arroces
+    {
+        codigo: "22",
+        nombre: "ARROZ CON GAMBAS",
+        precio: 5.80,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "23",
+        nombre: "ARROZ TRES DELICIAS",
+        precio: 4.95,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "24",
+        nombre: "ARROZ CON HUEVO",
+        precio: 4.95,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "25",
+        nombre: "ARROZ \"KAIFAI\" DE MARISCO",
+        precio: 7.95,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "25B",
+        nombre: "ARROZ \"KAIFAI\" DE POLLO",
+        precio: 7.50,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "27",
+        nombre: "ARROZ CON TERNERA",
+        precio: 5.80,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "28",
+        nombre: "ARROZ CON CURRY",
+        precio: 5.80,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "29",
+        nombre: "ARROZ FUKU",
+        precio: 6.20,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "29B",
+        nombre: "ARROZ CON BROTES DE SOJA",
+        precio: 5.80,
+        categoria: "Arroces"
+    },
+    {
+        codigo: "30",
+        nombre: "ARROZ BLANCO",
+        precio: 3.80,
+        categoria: "Arroces"
+    },
+
+    // Tallarines
+    {
+        codigo: "31",
+        nombre: "TALLARINES CON GAMBAS",
+        precio: 6.30,
+        categoria: "Tallarines"
+    },
+    {
+        codigo: "32",
+        nombre: "TALLARINES CON TRES DELICIAS",
+        precio: 5.80,
+        categoria: "Tallarines"
+    },
+    {
+        codigo: "33",
+        nombre: "TALLARINES CON TERNERA",
+        precio: 5.80,
+        categoria: "Tallarines"
+    },
+    {
+        codigo: "34",
+        nombre: "FIDEOS DE ARROZ CON TRES DELICIAS",
+        precio: 6.20,
+        categoria: "Tallarines"
+    },
+    {
+        codigo: "34B",
+        nombre: "FIDEOS DE ARROZ CON GAMBAS",
         precio: 6.80,
-        categoria: "Entrantes"
+        categoria: "Tallarines"
+    },
+    {
+        codigo: "35",
+        nombre: "TALLARINES CHINOS SALTEADOS",
+        precio: 6.50,
+        categoria: "Tallarines"
+    },
+    {
+        codigo: "414",
+        nombre: "FIDEOS DE PATATAS",
+        precio: 6.80,
+        categoria: "Tallarines"
+    },
+
+    // Otros
+    {
+        codigo: "415",
+        nombre: "PASTA DE ARROZ",
+        precio: 7.20,
+        categoria: "Tallarines"
+    },
+    {
+        codigo: "80",
+        nombre: "KU-BAK CON GAMBAS",
+        precio: 7.20,
+        categoria: "Tallarines"
+    },
+    {
+        codigo: "81",
+        nombre: "HORMIGAS EN EL ÁRBOL",
+        precio: 6.95,
+        categoria: "Tallarines"
     }
 ];
 
@@ -95,6 +215,9 @@ export default function Menu() {
 
     const HEADER_HEIGHT = 60; // Altura del header en píxeles
     const FILTER_MARGIN = 32; // Margen adicional para el filtro (ajusta según sea necesario)
+
+    // Definimos el orden deseado de las categorías
+    const ordenCategorias = ["Ensaladas", "Entrantes", "Sopas", "Arroces", "Tallarines", "Otros"];
 
     useEffect(() => {
         if (filterRef.current) {
@@ -167,7 +290,11 @@ export default function Menu() {
 
                 setPlatos(platosLista);
                 const categoriasUnicas = ["Todos", ...Array.from(new Set(platosLista.map(plato => plato.categoria)))];
-                setCategorias(categoriasUnicas);
+
+                // Ordenamos las categorías según el orden definido
+                const categoriasOrdenadas = ["Todos", ...ordenCategorias.filter(cat => categoriasUnicas.includes(cat))];
+                setCategorias(categoriasOrdenadas);
+
                 setLoading(false);
             } catch (err) {
                 console.error("Error al obtener los platos:", err);
@@ -202,7 +329,9 @@ export default function Menu() {
         }, 300); // Duración de la animación
     };
 
-    const categoriasAMostrar = filtro === "Todos" ? categorias.filter(cat => cat !== "Todos") : [filtro];
+    const categoriasAMostrar = filtro === "Todos"
+        ? categorias.filter(cat => cat !== "Todos")
+        : [filtro];
 
     return (
         <section id="menu" className="py-12 bg-gray-100" ref={menuRef}>
@@ -245,7 +374,7 @@ export default function Menu() {
                     {categoriasAMostrar.map((categoria) => (
                         <div key={categoria} className="mb-12">
                             <h3 className="text-2xl font-semibold mb-6 text-black">{categoria}</h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                                 {platosFiltrados.filter(plato => plato.categoria === categoria).map((plato) => (
                                     <div key={plato.codigo} className="bg-white rounded-lg shadow-md overflow-hidden">
                                         <div className="relative w-full" style={{ paddingBottom: '100%' }}>
@@ -257,8 +386,8 @@ export default function Menu() {
                                                 className="absolute top-0 left-0 w-full h-full"
                                             />
                                         </div>
-                                        <div className="p-3">
-                                            <h4 className="text-sm font-semibold mb-1 text-black truncate">
+                                        <div className="p-2">
+                                            <h4 className="text-sm font-semibold mb-1 text-black h-10 overflow-hidden">
                                                 {plato.codigo}. {plato.nombre}
                                             </h4>
                                             <p className="text-indigo-600 font-bold text-sm">{plato.precio.toFixed(2)} €</p>
