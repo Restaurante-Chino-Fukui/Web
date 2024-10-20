@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAnalytics } from 'firebase/analytics';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
     // Aquí van tus credenciales de Firebase
@@ -19,5 +19,7 @@ const app = initializeApp(firebaseConfig);
 // Inicializar Firestore
 export const db = getFirestore(app);
 
-// Inicializar Analytics (opcional)
-export const analytics = getAnalytics(app);
+// Inicializar Storage
+export const storage = getStorage(app);
+
+export { app };
