@@ -76,18 +76,46 @@ export default function Menu() {
     const [platos, setPlatos] = useState<Plato[]>([]);
     const [categorias, setCategorias] = useState<string[]>([]);
     const [filtro, setFiltro] = useState("Todos");
+    const [isSticky, setIsSticky] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [isSticky, setIsSticky] = useState(false);
     const [originalFilterTop, setOriginalFilterTop] = useState<number | null>(null);
     const [filterHeight, setFilterHeight] = useState(0);
-    const [isAtBottom, setIsAtBottom] = useState(false);
+    const [animatingCategory, setAnimatingCategory] = useState<string | null>(null);
 
     const filterRef = useRef<HTMLDivElement>(null);
     const menuRef = useRef<HTMLElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
 
     const HEADER_HEIGHT = 60; // Altura del header en píxeles
+
+    useEffect(() => {
+        if (filterRef.current) {
+            const rect = filterRef.current.getBoundingClientRect();
+            setOriginalFilterTop(rect.top + window.scrollY);
+            setFilterHeight(rect.height);
+        }
+    }, [loading]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!filterRef.current || !menuRef.current || !contentRef.current || originalFilterTop === null) return;
+
+            const filterRect = filterRef.current.getBoundingClientRect();
+            const contentRect = contentRef.current.getBoundingClientRect();
+            const currentScroll = window.scrollY;
+
+            if (currentScroll >= originalFilterTop - HEADER_HEIGHT &&
+                contentRect.bottom > filterRect.height + HEADER_HEIGHT) {
+                setIsSticky(true);
+            } else {
+                setIsSticky(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [originalFilterTop]);
 
     useEffect(() => {
         const obtenerPlatos = async () => {
@@ -145,31 +173,26 @@ export default function Menu() {
     }, []);
 
     useEffect(() => {
-        if (filterRef.current && originalFilterTop === null) {
-            setOriginalFilterTop(filterRef.current.getBoundingClientRect().top + window.scrollY);
+        if (contentRef.current && originalFilterTop !== null) {
+            window.scrollTo({
+                top: Math.max(0, originalFilterTop - HEADER_HEIGHT),
+                behavior: 'smooth'
+            });
         }
-
-        const handleScroll = () => {
-            if (!filterRef.current || !menuRef.current || originalFilterTop === null) return;
-
-            const menuRect = menuRef.current.getBoundingClientRect();
-            const currentScroll = window.scrollY;
-
-            if (currentScroll >= originalFilterTop - HEADER_HEIGHT && currentScroll + window.innerHeight < menuRect.bottom) {
-                setIsSticky(true);
-            } else {
-                setIsSticky(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [originalFilterTop]);
+    }, [filtro, originalFilterTop]);
 
     if (loading) return <div>Cargando menú...</div>;
     if (error) return <div>{error}</div>;
 
     const platosFiltrados = platos.filter(plato => filtro === "Todos" || plato.categoria === filtro);
+
+    const handleCategoryClick = (categoria: string) => {
+        setAnimatingCategory(categoria);
+        setTimeout(() => {
+            setAnimatingCategory(null);
+            setFiltro(categoria);
+        }, 300); // Duración de la animación
+    };
 
     const categoriasAMostrar = filtro === "Todos" ? categorias.filter(cat => cat !== "Todos") : [filtro];
 
@@ -187,18 +210,21 @@ export default function Menu() {
                     className={`${isSticky ? 'fixed left-0 right-0 py-4 z-10' : ''}`}
                     style={{
                         top: isSticky ? `${HEADER_HEIGHT}px` : 'auto',
-                        background: isSticky ? 'white' : 'transparent',
-                        boxShadow: isSticky ? '0 2px 4px rgba(0,0,0,0.1)' : 'none'
+                        background: 'transparent',
+                        boxShadow: 'none'
                     }}
                 >
                     <div className="flex justify-center space-x-4 flex-wrap mb-8">
                         {categorias.map((categoria) => (
                             <button
                                 key={categoria}
-                                onClick={() => setFiltro(categoria)}
+                                onClick={() => handleCategoryClick(categoria)}
                                 className={`px-4 py-2 rounded-full transition-all duration-300 ${filtro === categoria
-                                    ? 'bg-indigo-600 text-white'
+                                    ? 'bg-indigo-600 text-white transform scale-105'
                                     : 'bg-white border border-gray-300 text-indigo-600 hover:bg-indigo-100'
+                                    } ${animatingCategory === categoria
+                                        ? 'animate-pulse'
+                                        : ''
                                     }`}
                             >
                                 {categoria}
