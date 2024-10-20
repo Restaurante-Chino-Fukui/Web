@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { db, storage } from '../config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
@@ -19,6 +19,15 @@ export default function Menu() {
     const [filtro, setFiltro] = useState("Todos");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [isSticky, setIsSticky] = useState(false);
+    const [originalFilterTop, setOriginalFilterTop] = useState<number | null>(null);
+    const [filterHeight, setFilterHeight] = useState(0);
+
+    const filterRef = useRef<HTMLDivElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    const HEADER_HEIGHT = 60; // Altura del header en píxeles
 
     useEffect(() => {
         const obtenerPlatos = async () => {
@@ -53,6 +62,34 @@ export default function Menu() {
         obtenerPlatos();
     }, []);
 
+    useEffect(() => {
+        if (filterRef.current) {
+            const rect = filterRef.current.getBoundingClientRect();
+            setOriginalFilterTop(rect.top + window.scrollY);
+            setFilterHeight(rect.height);
+        }
+    }, [loading]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!filterRef.current || !menuRef.current || !contentRef.current || originalFilterTop === null) return;
+
+            const filterRect = filterRef.current.getBoundingClientRect();
+            const contentRect = contentRef.current.getBoundingClientRect();
+            const currentScroll = window.scrollY;
+
+            if (currentScroll >= originalFilterTop - HEADER_HEIGHT &&
+                currentScroll + filterRect.height + HEADER_HEIGHT < contentRect.bottom) {
+                setIsSticky(true);
+            } else {
+                setIsSticky(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [originalFilterTop]);
+
     if (loading) return <div>Cargando menú...</div>;
     if (error) return <div>{error}</div>;
 
@@ -61,51 +98,68 @@ export default function Menu() {
     const categoriasAMostrar = filtro === "Todos" ? categorias.filter(cat => cat !== "Todos") : [filtro];
 
     return (
-        <section id="menu" className="py-12 bg-gray-100">
+        <section id="menu" className="py-12 bg-gray-100" ref={menuRef}>
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl font-bold text-center mb-8 text-black">Nuestro Menú</h2>
 
-                <div className="flex justify-center space-x-4 flex-wrap mb-8">
-                    {categorias.map((categoria) => (
-                        <button
-                            key={categoria}
-                            onClick={() => setFiltro(categoria)}
-                            className={`px-4 py-2 rounded-full transition-all duration-300 ${filtro === categoria
-                                ? 'bg-indigo-600 text-white'
-                                : 'bg-white border border-gray-300 text-indigo-600 hover:bg-indigo-100'
-                                }`}
-                        >
-                            {categoria}
-                        </button>
-                    ))}
+                {/* Div espaciador que solo aparece cuando el filtro está fijo */}
+                {isSticky && (
+                    <div style={{ height: `${filterHeight}px` }} />
+                )}
+
+                <div
+                    ref={filterRef}
+                    className={`${isSticky ? 'fixed left-0 right-0 py-4 z-10' : ''}`}
+                    style={{
+                        top: isSticky ? `${HEADER_HEIGHT}px` : 'auto',
+                        background: isSticky ? 'white' : 'transparent',
+                        boxShadow: isSticky ? '0 2px 4px rgba(0,0,0,0.1)' : 'none'
+                    }}
+                >
+                    <div className="flex justify-center space-x-4 flex-wrap mb-8">
+                        {categorias.map((categoria) => (
+                            <button
+                                key={categoria}
+                                onClick={() => setFiltro(categoria)}
+                                className={`px-4 py-2 rounded-full transition-all duration-300 ${filtro === categoria
+                                    ? 'bg-indigo-600 text-white'
+                                    : 'bg-white border border-gray-300 text-indigo-600 hover:bg-indigo-100'
+                                    }`}
+                            >
+                                {categoria}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {categoriasAMostrar.map((categoria) => (
-                    <div key={categoria} className="mb-12">
-                        <h3 className="text-2xl font-semibold mb-6 text-black">{categoria}</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                            {platosFiltrados.filter(plato => plato.categoria === categoria).map((plato) => (
-                                <div key={plato.codigo} className="bg-white rounded-lg shadow-md overflow-hidden">
-                                    <div className="relative w-full" style={{ paddingBottom: '100%' }}>
-                                        <Image
-                                            src={plato.imagen}
-                                            alt={plato.nombre}
-                                            layout="fill"
-                                            objectFit="cover"
-                                            className="absolute top-0 left-0 w-full h-full"
-                                        />
+                <div ref={contentRef}>
+                    {categoriasAMostrar.map((categoria) => (
+                        <div key={categoria} className="mb-12">
+                            <h3 className="text-2xl font-semibold mb-6 text-black">{categoria}</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                                {platosFiltrados.filter(plato => plato.categoria === categoria).map((plato) => (
+                                    <div key={plato.codigo} className="bg-white rounded-lg shadow-md overflow-hidden">
+                                        <div className="relative w-full" style={{ paddingBottom: '100%' }}>
+                                            <Image
+                                                src={plato.imagen}
+                                                alt={plato.nombre}
+                                                layout="fill"
+                                                objectFit="cover"
+                                                className="absolute top-0 left-0 w-full h-full"
+                                            />
+                                        </div>
+                                        <div className="p-3">
+                                            <h4 className="text-sm font-semibold mb-1 text-black truncate">
+                                                {plato.codigo}. {plato.nombre}
+                                            </h4>
+                                            <p className="text-indigo-600 font-bold text-sm">{plato.precio.toFixed(2)} €</p>
+                                        </div>
                                     </div>
-                                    <div className="p-3">
-                                        <h4 className="text-sm font-semibold mb-1 text-black truncate">
-                                            {plato.codigo}. {plato.nombre}
-                                        </h4>
-                                        <p className="text-indigo-600 font-bold text-sm">{plato.precio.toFixed(2)} €</p>
-                                    </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </section>
     );
