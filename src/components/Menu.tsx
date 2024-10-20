@@ -30,22 +30,18 @@ export default function Menu() {
                 const platosPromises = platosSnapshot.docs.map(async (doc) => {
                     const data = doc.data() as Omit<Plato, 'id' | 'imagen'>;
                     try {
-                        const imageRef = ref(storage, `menu/${doc.id}.jpg`);
+                        const imageRef = ref(storage, `platos/${doc.id}.jpg`);
                         const imageUrl = await getDownloadURL(imageRef);
-                        return {
-                            ...data,
-                            id: doc.id,
-                            imagen: imageUrl
-                        };
+                        return { ...data, id: doc.id, imagen: imageUrl };
                     } catch (error) {
-                        console.error('Error al obtener la URL de la imagen:', error);
+                        console.error(`Error al obtener la imagen para el plato ${doc.id}:`, error);
                         return { ...data, id: doc.id, imagen: '' };
                     }
                 });
 
-                const platosLista = await Promise.all(platosPromises);
-                setPlatos(platosLista);
-                const categoriasUnicas = ["Todos", ...Array.from(new Set(platosLista.map(plato => plato.categoria)))];
+                const platosConImagenes = await Promise.all(platosPromises);
+                setPlatos(platosConImagenes);
+                const categoriasUnicas = ["Todos", ...Array.from(new Set(platosConImagenes.map(plato => plato.categoria)))];
                 setCategorias(categoriasUnicas);
                 setLoading(false);
             } catch (error) {
