@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useFirebase } from '../hooks/useFirebase';
+import { useFirebase } from './useFirebase';
 import { ref, getDownloadURL } from "firebase/storage";
 
 export default function Hero() {

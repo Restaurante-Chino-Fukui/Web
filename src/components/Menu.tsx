@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import { db, storage } from '../config/firebase';
+import { db, storage } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
 
