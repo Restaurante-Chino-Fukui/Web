@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Menu from "@/components/Menu";
 import Ubicacion from "@/components/Ubicacion";
+import { Analytics } from "@vercel/analytics/react"
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         <Menu />
         <Ubicacion />
       </main>
+      <Analytics />
       <Footer />
     </div>
   );

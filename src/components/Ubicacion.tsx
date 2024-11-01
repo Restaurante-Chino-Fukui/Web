@@ -66,9 +66,9 @@ export default function Ubicacion() {
 
                             {/* Versión escritorio - Números de teléfono */}
                             <p className="hidden md:block text-xl md:text-2xl">
-                                <span>Tel: +34 962 684 004</span>
+                                <span className="hover:text-yellow-400 transition-colors">Tel: +34 962 684 004</span>
                                 {' '} | {' '}
-                                <span>+34 961 185 629</span>
+                                <span className="hover:text-yellow-400 transition-colors">+34 961 185 629</span>
                             </p>
 
                             <button
