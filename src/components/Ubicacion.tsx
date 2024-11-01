@@ -27,7 +27,7 @@ export default function Ubicacion() {
                             </div>
                         </div>
 
-                        {/* Dirección y teléfono */}
+                        {/* Dirección y teléfonos */}
                         <div className="space-y-4 md:space-y-6">
                             <p className="text-xl md:text-2xl">
                                 <a
@@ -39,16 +39,38 @@ export default function Ubicacion() {
                                     Av. Mediterráneo, 87, 46520 Puerto de Sagunto
                                 </a>
                             </p>
-                            <p className="text-xl md:text-2xl">
 
-                                <a href="tel:+34962684004" className="hover:text-yellow-400 transition-colors">
-                                    Teléfonos: +34 962 684 004
-                                </a>
+                            {/* Versión móvil - Botón de llamada */}
+                            <div className="md:hidden">
+                                <button
+                                    onClick={() => {
+                                        const phoneNumbers = [
+                                            { number: '+34962684004', label: 'Teléfono 1' },
+                                            { number: '+34961185629', label: 'Teléfono 2' }
+                                        ];
+                                        // Crear elementos <a> temporales para mostrar las opciones nativas de llamada
+                                        phoneNumbers.forEach(phone => {
+                                            const link = document.createElement('a');
+                                            link.href = `tel:${phone.number}`;
+                                            link.click();
+                                        });
+                                    }}
+                                    className="bg-yellow-400 text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-500 transition-colors flex items-center gap-2"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    Llámanos ya
+                                </button>
+                            </div>
+
+                            {/* Versión escritorio - Números de teléfono */}
+                            <p className="hidden md:block text-xl md:text-2xl">
+                                <span>Tel: +34 962 684 004</span>
                                 {' '} | {' '}
-                                <a href="tel:+34961185629" className="hover:text-yellow-400 transition-colors">
-                                    +34 961 185 629
-                                </a>
+                                <span>+34 961 185 629</span>
                             </p>
+
                             <button
                                 onClick={handleOpenDirections}
                                 className="bg-yellow-400 text-black px-6 md:px-8 py-3 md:py-4 rounded-lg text-lg md:text-xl font-semibold hover:bg-yellow-500 transition-colors flex items-center gap-2 md:gap-3"
