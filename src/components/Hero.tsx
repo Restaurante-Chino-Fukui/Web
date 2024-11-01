@@ -46,9 +46,12 @@ export default function Hero() {
                 <div className="text-center text-white z-10">
                     <h1 className="text-6xl font-bold mb-6">Bienvenido a FUKUI</h1>
                     <p className="text-2xl mb-12">Descubre la mejor comida china de la zona</p>
-                    <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-full transition-colors text-xl shadow-lg">
-                        Reserva ahora
-                    </button>
+                    <a
+                        href="tel:+34962684004"
+                        className="inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-full transition-colors text-xl shadow-lg"
+                    >
+                        Llámanos ahora
+                    </a>
                 </div>
             </div>
         </section>

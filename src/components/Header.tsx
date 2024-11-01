@@ -42,7 +42,7 @@ export default function Header() {
                         {[
                             { href: "#carta", text: "Carta" },
                             { href: "#about", text: "Nosotros" },
-                            { href: "#contact", text: "Contacto" }
+                            { href: "#ubicacion", text: "Ubicación" }
                         ].map(({ href, text }) => (
                             <li key={href}>
                                 <a
