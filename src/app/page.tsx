@@ -1,9 +1,11 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Menu from "@/components/Menu";
+import Carta from "@/components/Carta";
+
 import Ubicacion from "@/components/Ubicacion";
 import { Analytics } from "@vercel/analytics/react"
 import Footer from "@/components/Footer";
+import Menus from "@/components/Menus";
 
 export default function Home() {
   return (
@@ -11,7 +13,8 @@ export default function Home() {
       <Header />
       <main className="flex-1 w-full">
         <Hero />
-        <Menu />
+        <Carta />
+        <Menus />
         <Ubicacion />
       </main>
       <Analytics />

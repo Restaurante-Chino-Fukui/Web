@@ -13,7 +13,7 @@ interface Plato {
     categoria: string;
 }
 
-export default function Menu() {
+export default function Carta() {
     const [platos, setPlatos] = useState<Plato[]>([]);
     const [categorias, setCategorias] = useState<string[]>([]);
     const [isSticky, setIsSticky] = useState(false);
