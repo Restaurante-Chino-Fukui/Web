@@ -1,5 +1,4 @@
 "use client"
-import { useState } from 'react';
 
 export default function Header() {
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

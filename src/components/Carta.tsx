@@ -85,7 +85,7 @@ export default function Carta() {
                 const platosSnapshot = await getDocs(platosCollection);
                 const platosLista = await Promise.all(platosSnapshot.docs.map(async doc => {
                     const datoPlato = doc.data() as Omit<Plato, 'id' | 'imagen'>;
-                    let platosResultantes = [];
+                    const platosResultantes = [];
 
                     // Pluralizar categorías si es necesario
                     const categoriasPlural = ["Verdura", "Ternera", "Cerdo", "Marisco", "Pollo"];
