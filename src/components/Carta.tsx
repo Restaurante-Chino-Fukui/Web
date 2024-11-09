@@ -22,28 +22,32 @@ export default function Carta() {
     const [originalFilterTop, setOriginalFilterTop] = useState<number | null>(null);
     const [filterHeight, setFilterHeight] = useState(0);
     const [animatingCategory, setAnimatingCategory] = useState<string | null>(null);
-    const [categoriaActiva, setCategoriaActiva] = useState("Ensaladas");
+    const [categoriaActiva, setCategoriaActiva] = useState("Especiales");
 
     const filterRef = useRef<HTMLDivElement>(null), cartaRef = useRef<HTMLElement>(null), contentRef = useRef<HTMLDivElement>(null);
 
     const HEADER_HEIGHT = 60, FILTER_MARGIN = 32;
 
-    const ordenCategorias = ["Ensaladas", "Entrantes", "Sopas", "Arroces", "Tallarines", "Huevos", "Verduras", "Terneras", "Pollos", "Cerdos", "Mariscos", "Patos", "Sushis", "Dim Sums"];
+    const ordenCategorias = ["Especiales", "Ensaladas", "Entrantes", "Sopas", "Arroces", "Tallarines", "Huevos", "Verduras", "Cerdos", "Terneras", "Mariscos", "Pollos", "Patos", "Sushis", "Dim Sums"];
 
     const categoriasFiltro = [
+        "Especiales",
         "Ensaladas",
         "Entrantes",
         "Sopas",
         "Arroces",
         "Tallarines",
         "Verduras",
-        "Terneras",
-        "Pollos",
         "Cerdos",
+        "Terneras",
         "Mariscos",
+        "Pollos",
         "Patos",
-        "Sushis"
+        "Sushis",
+        "Dim Sums"
     ];
+
+    const platosEspeciales = ['29', '49B', '94B', '428', '409'];
 
     useEffect(() => {
         if (filterRef.current) {
@@ -81,32 +85,69 @@ export default function Carta() {
                 const platosSnapshot = await getDocs(platosCollection);
                 const platosLista = await Promise.all(platosSnapshot.docs.map(async doc => {
                     const datoPlato = doc.data() as Omit<Plato, 'id' | 'imagen'>;
+                    let platosResultantes = [];
 
+                    // Pluralizar categorías si es necesario
                     const categoriasPlural = ["Verdura", "Ternera", "Cerdo", "Marisco", "Pollo"];
                     if (categoriasPlural.includes(datoPlato.categoria)) {
                         datoPlato.categoria = datoPlato.categoria + 's';
                     }
 
                     try {
-                        const imagenRef = ref(storage, `platos/${datoPlato.codigo}.jpg`);
-                        const imagenURL = await getDownloadURL(imagenRef);
-                        return {
+                        let imagenRef = ref(storage, `platos/${datoPlato.codigo}.jpg`);
+                        let imagenURL;
+                        try {
+                            imagenURL = await getDownloadURL(imagenRef);
+                        } catch {
+                            imagenRef = ref(storage, `platos/${datoPlato.codigo}.png`);
+                            imagenURL = await getDownloadURL(imagenRef);
+                        }
+
+                        // Crear el plato base
+                        const platoBase = {
                             id: doc.id,
                             ...datoPlato,
                             imagen: imagenURL
                         };
+
+                        // Añadir el plato en su categoría original
+                        platosResultantes.push(platoBase);
+
+                        // Si es un plato especial, añadirlo también en la categoría Especiales
+                        if (platosEspeciales.includes(datoPlato.codigo)) {
+                            platosResultantes.push({
+                                ...platoBase,
+                                id: doc.id + '_especial',
+                                categoria: 'Especiales'
+                            });
+                        }
+
+                        return platosResultantes;
+
                     } catch (imgError) {
                         console.error(`Error al cargar la imagen para ${datoPlato.codigo}:`, imgError);
-                        return {
+                        const platoSinImagen = {
                             id: doc.id,
                             ...datoPlato,
-                            imagen: '' // O una URL de imagen por defecto
+                            imagen: ''
                         };
+                        platosResultantes.push(platoSinImagen);
+                        if (platosEspeciales.includes(datoPlato.codigo)) {
+                            platosResultantes.push({
+                                ...platoSinImagen,
+                                id: doc.id + '_especial',
+                                categoria: 'Especiales'
+                            });
+                        }
+                        return platosResultantes;
                     }
                 }));
 
+                // Aplanar el array de arrays resultante
+                const platosListaAplanada = platosLista.flat();
+
                 // Ordenar platos por categoría y luego por código
-                platosLista.sort((a, b) => {
+                platosListaAplanada.sort((a, b) => {
                     if (a.categoria !== b.categoria) {
                         return a.categoria.localeCompare(b.categoria);
                     }
@@ -120,8 +161,8 @@ export default function Carta() {
                     return a.codigo.localeCompare(b.codigo);
                 });
 
-                setPlatos(platosLista);
-                const categoriasUnicas = [...Array.from(new Set(platosLista.map(plato => plato.categoria)))];
+                setPlatos(platosListaAplanada);
+                const categoriasUnicas = [...Array.from(new Set(platosListaAplanada.map(plato => plato.categoria)))];
 
                 // Ordenamos las categorías según el orden definido
                 const categoriasOrdenadas = [...ordenCategorias.filter(cat => categoriasUnicas.includes(cat))];
@@ -152,43 +193,44 @@ export default function Carta() {
         const observerOptions = {
             root: null,
             rootMargin: '-80px 0px 0px 0px',
-            threshold: [0, 1]
+            threshold: 0.3
         };
 
-        const visibleSections = new Set();
+        let currentlyVisible: string[] = [];
 
         const handleIntersect = (entries: IntersectionObserverEntry[]) => {
             entries.forEach(entry => {
                 const categoria = entry.target.id.replace('categoria-', '');
 
                 if (entry.isIntersecting) {
-                    visibleSections.add(categoria);
+                    if (!currentlyVisible.includes(categoria)) {
+                        currentlyVisible.push(categoria);
+                    }
                 } else {
-                    visibleSections.delete(categoria);
+                    currentlyVisible = currentlyVisible.filter(cat => cat !== categoria);
                 }
             });
 
-            // Encontrar la categoría visible más alta según el orden definido
-            if (visibleSections.size > 0) {
-                const categoriaVisible = ordenCategorias.find(cat =>
-                    visibleSections.has(cat)
+            if (currentlyVisible.length > 0) {
+                // Usar el primer elemento visible según el orden definido
+                const primeraCategoriaOrdenada = ordenCategorias.find(cat =>
+                    currentlyVisible.includes(cat)
                 );
-                if (categoriaVisible) {
-                    setCategoriaActiva(categoriaVisible);
+                if (primeraCategoriaOrdenada) {
+                    setCategoriaActiva(primeraCategoriaOrdenada);
                 }
             }
         };
 
         const observer = new IntersectionObserver(handleIntersect, observerOptions);
 
-        // Observar todas las secciones de categorías
         categorias.forEach(categoria => {
             const element = document.getElementById(`categoria-${categoria}`);
             if (element) observer.observe(element);
         });
 
         return () => observer.disconnect();
-    }, [categorias]);
+    }, [categorias, ordenCategorias]);
 
     if (loading) return <div>Cargando menú...</div>;
     if (error) return <div>{error}</div>;

@@ -67,6 +67,17 @@ export default function Menus() {
                             <MenuCard key={menu.id} menu={menu} />
                         ))}
                     </div>
+                    <div className="text-center mt-8">
+                        <p className="text-lg text-gray-700">
+                            Para menús de más personas,
+                            <a
+                                href="tel:+34962684004"
+                                className="text-red-600 hover:text-red-700 font-semibold ml-1"
+                            >
+                                consúltenos llamando al 962 68 40 04
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

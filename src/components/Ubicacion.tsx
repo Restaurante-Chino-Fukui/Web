@@ -24,7 +24,6 @@ export default function Ubicacion() {
 
     return (
         <section id="ubicacion" className="relative bg-gray-900 text-white py-16">
-            <div className="absolute inset-0 bg-[url('/restaurant-bg.jpg')] bg-cover bg-center opacity-25"></div>
             <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl font-bold text-center mb-12">
                     Estamos aquí

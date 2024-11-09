@@ -1,47 +1,7 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Header() {
-    const [activeLink, setActiveLink] = useState<string | null>(null);
-
-    useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '-80px 0px 0px 0px',
-            threshold: [0, 1]
-        };
-
-        const visibleSections = new Set();
-        const sections = ["carta", "menus", "ubicacion"];
-
-        const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach(entry => {
-                const sectionId = entry.target.id;
-                if (entry.isIntersecting) {
-                    visibleSections.add(sectionId);
-                } else {
-                    visibleSections.delete(sectionId);
-                }
-            });
-
-            if (visibleSections.size > 0) {
-                // Obtener la primera sección visible
-                const activeSection = Array.from(visibleSections)[0];
-                setActiveLink(`#${activeSection}`);
-            }
-        };
-
-        const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-        // Observar todas las secciones
-        sections.forEach(section => {
-            const element = document.getElementById(section);
-            if (element) observer.observe(element);
-        });
-
-        return () => observer.disconnect();
-    }, []);
-
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
 
@@ -50,11 +10,10 @@ export default function Header() {
                 top: 0,
                 behavior: 'smooth'
             });
-            setActiveLink(null);
         } else {
             const targetElement = document.querySelector(href);
             if (targetElement) {
-                const headerOffset = 60;
+                const headerOffset = 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -86,14 +45,10 @@ export default function Header() {
                             <li key={href}>
                                 <a
                                     href={href}
-                                    className={`relative text-base md:text-lg lg:text-xl transition-colors ${activeLink === href ? 'text-indigo-600' : 'hover:text-indigo-600'
-                                        }`}
+                                    className="text-base md:text-lg lg:text-xl hover:text-indigo-600 transition-colors"
                                     onClick={(e) => handleLinkClick(e, href)}
                                 >
                                     {text}
-                                    {activeLink === href && (
-                                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-600"></span>
-                                    )}
                                 </a>
                             </li>
                         ))}
