@@ -1,0 +1,43 @@
+
+> restaurante-fukui@0.1.0 dev
+> next dev --turbopack -p 3001
+
+   ▲ Next.js 15.0.2 (Turbopack)
+   - Local:        http://localhost:3001
+   - Environments: .env
+
+ ✓ Starting...
+Creating turbopack project { dir: 'A:\\AAAProyectos\\Web', testMode: true }
+ ✓ Ready in 1969ms
+ ○ Compiling /admin ...
+ POST /api/admin/login 200 in 1351ms
+ ✓ Compiled /admin in 4.6s
+ GET /admin 200 in 5203ms
+ GET /admin 200 in 253ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 773ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 893ms
+ POST /api/admin/login 200 in 127ms
+ ○ Compiling / ...
+ ✓ Compiled / in 890ms
+ GET / 200 in 1048ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 415ms
+ ✓ Compiled in 286ms
+ GET / 200 in 277ms
+ GET / 200 in 95ms
+ ✓ Compiled in 51ms
+ ✓ Compiled in 68ms
+ GET / 200 in 404ms
+ ✓ Compiled in 149ms
+ GET / 200 in 274ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 107ms
+ ○ Compiling /_not-found/page ...
+ ✓ Compiled /_not-found/page in 618ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 925ms
+ ✓ Compiled in 198ms
+ ✓ Compiled in 57ms
+ GET / 200 in 245ms
+ ✓ Compiled in 90ms
+ ✓ Compiled in 66ms
+ ✓ Compiled in 226ms
+ ✓ Compiled in 54ms

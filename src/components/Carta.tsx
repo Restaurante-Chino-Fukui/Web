@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { db, storage } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
@@ -13,74 +13,78 @@ interface Plato {
     categoria: string;
 }
 
+const HEADER_HEIGHT = 72;
+const DEFAULT_FILTER_HEIGHT = 92;
+
+const ordenCategorias = ["Especiales", "Ensaladas", "Entrantes", "Sopas", "Arroces", "Tallarines", "Huevos", "Verduras", "Cerdos", "Terneras", "Mariscos", "Pollos", "Patos", "Sushis", "Dim Sums"];
+
+const gruposCategorias = [
+    { nombre: "Especiales", categorias: ["Especiales"] },
+    { nombre: "Para empezar", categorias: ["Ensaladas", "Entrantes", "Sopas"] },
+    { nombre: "Arroces y tallarines", categorias: ["Arroces", "Tallarines"] },
+    { nombre: "Huevos y verduras", categorias: ["Huevos", "Verduras"] },
+    { nombre: "Carnes y mariscos", categorias: ["Cerdos", "Terneras", "Mariscos", "Pollos", "Patos"] },
+    { nombre: "Sushi y dim sum", categorias: ["Sushis", "Dim Sums"] },
+];
+
+const platosEspeciales = ['29', '49B', '94B', '428', '409'];
+
 export default function Carta() {
     const [platos, setPlatos] = useState<Plato[]>([]);
     const [categorias, setCategorias] = useState<string[]>([]);
-    const [isSticky, setIsSticky] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [originalFilterTop, setOriginalFilterTop] = useState<number | null>(null);
-    const [filterHeight, setFilterHeight] = useState(0);
-    const [animatingCategory, setAnimatingCategory] = useState<string | null>(null);
     const [categoriaActiva, setCategoriaActiva] = useState("Especiales");
+    const [filterHeight, setFilterHeight] = useState(DEFAULT_FILTER_HEIGHT);
 
-    const filterRef = useRef<HTMLDivElement>(null), cartaRef = useRef<HTMLElement>(null), contentRef = useRef<HTMLDivElement>(null);
+    const cartaRef = useRef<HTMLElement>(null);
+    const filterRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
 
-    const HEADER_HEIGHT = 60, FILTER_MARGIN = 32;
+    const gruposDisponibles = gruposCategorias
+        .map((grupo) => ({
+            ...grupo,
+            categorias: grupo.categorias.filter((categoria) => categorias.includes(categoria)),
+        }))
+        .filter((grupo) => grupo.categorias.length > 0);
 
-    const ordenCategorias = ["Especiales", "Ensaladas", "Entrantes", "Sopas", "Arroces", "Tallarines", "Huevos", "Verduras", "Cerdos", "Terneras", "Mariscos", "Pollos", "Patos", "Sushis", "Dim Sums"];
-
-    const categoriasFiltro = [
-        "Especiales",
-        "Ensaladas",
-        "Entrantes",
-        "Sopas",
-        "Arroces",
-        "Tallarines",
-        "Verduras",
-        "Cerdos",
-        "Terneras",
-        "Mariscos",
-        "Pollos",
-        "Patos",
-        "Sushis",
-        "Dim Sums"
-    ];
-
-    const platosEspeciales = ['29', '49B', '94B', '428', '409'];
+    const grupoActivo = gruposDisponibles.find((grupo) => grupo.categorias.includes(categoriaActiva)) ?? gruposDisponibles[0];
 
     useEffect(() => {
-        if (filterRef.current) {
-            const rect = filterRef.current.getBoundingClientRect();
-            setOriginalFilterTop(rect.top + window.scrollY);
-            setFilterHeight(rect.height);
-        }
-    }, [loading]);
+        const filter = filterRef.current;
+        if (!filter) return;
+
+        const updateFilterHeight = () => setFilterHeight(filter.getBoundingClientRect().height);
+        updateFilterHeight();
+
+        const observer = new ResizeObserver(updateFilterHeight);
+        observer.observe(filter);
+
+        return () => observer.disconnect();
+    }, [grupoActivo?.nombre]);
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (!filterRef.current || !cartaRef.current || !contentRef.current || originalFilterTop === null) return;
+        const CACHE_KEY = 'fukui_carta_data';
+        const CACHE_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours
 
-            const filterRect = filterRef.current.getBoundingClientRect();
-            const contentRect = contentRef.current.getBoundingClientRect();
-            const currentScroll = window.scrollY;
-
-            if (currentScroll >= originalFilterTop - HEADER_HEIGHT &&
-                contentRect.bottom > filterRect.height + HEADER_HEIGHT) {
-                setIsSticky(true);
-            } else {
-                setIsSticky(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [originalFilterTop]);
-
-    useEffect(() => {
         const obtenerPlatos = async () => {
             try {
                 setLoading(true);
+
+                // Attempt to load from cache first
+                const cachedData = localStorage.getItem(CACHE_KEY);
+                if (cachedData) {
+                    const parsedCache = JSON.parse(cachedData);
+                    if (Date.now() - parsedCache.timestamp < CACHE_EXPIRY) {
+                        const cachedPlatos = parsedCache.platos;
+                        setPlatos(cachedPlatos);
+                        const categoriasUnicas = [...Array.from(new Set(cachedPlatos.map((p: Plato) => p.categoria))) as string[]];
+                        setCategorias([...ordenCategorias.filter(cat => categoriasUnicas.includes(cat))]);
+                        setLoading(false);
+                        return;
+                    }
+                }
+
                 const platosCollection = collection(db, 'platos');
                 const platosSnapshot = await getDocs(platosCollection);
                 const platosLista = await Promise.all(platosSnapshot.docs.map(async doc => {
@@ -161,6 +165,12 @@ export default function Carta() {
                     return a.codigo.localeCompare(b.codigo);
                 });
 
+                // Update cache
+                localStorage.setItem(CACHE_KEY, JSON.stringify({
+                    timestamp: Date.now(),
+                    platos: platosListaAplanada
+                }));
+
                 setPlatos(platosListaAplanada);
                 const categoriasUnicas = [...Array.from(new Set(platosListaAplanada.map(plato => plato.categoria)))];
 
@@ -180,20 +190,16 @@ export default function Carta() {
     }, []);
 
     useEffect(() => {
-        if (contentRef.current && originalFilterTop !== null) {
-            const scrollToPosition = Math.max(0, originalFilterTop - HEADER_HEIGHT - FILTER_MARGIN);
-            window.scrollTo({
-                top: scrollToPosition,
-                behavior: 'smooth'
-            });
+        if (categorias.length > 0 && !categorias.includes(categoriaActiva)) {
+            setCategoriaActiva(categorias[0]);
         }
-    }, [originalFilterTop]);
+    }, [categorias, categoriaActiva]);
 
     useEffect(() => {
         const observerOptions = {
             root: null,
-            rootMargin: '-80px 0px 0px 0px',
-            threshold: 0.3
+            rootMargin: `-${HEADER_HEIGHT + filterHeight}px 0px -50% 0px`,
+            threshold: 0.2
         };
 
         let currentlyVisible: string[] = [];
@@ -230,101 +236,121 @@ export default function Carta() {
         });
 
         return () => observer.disconnect();
-    }, [categorias, ordenCategorias]);
+    }, [categorias, filterHeight]);
 
     if (loading) return <div>Cargando menú...</div>;
     if (error) return <div>{error}</div>;
 
     const handleCategoryClick = (categoria: string) => {
-        setAnimatingCategory(categoria);
         setCategoriaActiva(categoria);
 
         const categoryElement = document.getElementById(`categoria-${categoria}`);
         if (categoryElement) {
-            const headerOffset = 76;
             const elementPosition = categoryElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            const offsetPosition = elementPosition + window.pageYOffset - HEADER_HEIGHT - filterHeight - 16;
 
             window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
             });
         }
+    };
 
-        setTimeout(() => {
-            setAnimatingCategory(null);
-        }, 300);
+    const handleGroupClick = (categoriasGrupo: string[]) => {
+        const primeraCategoria = categoriasGrupo[0];
+        if (primeraCategoria) handleCategoryClick(primeraCategoria);
     };
 
     return (
-        <section id="carta" className="w-full min-h-screen bg-gray-100" ref={cartaRef}>
-            <div className="container mx-auto px-4 w-full">
-                <h2 className="text-4xl font-bold text-center mt-12 mb-8 text-black">Nuestra Carta</h2>
-
-                {isSticky && (
-                    <div style={{ height: `${filterHeight + FILTER_MARGIN}px` }} />
-                )}
-
-                <div
-                    ref={filterRef}
-                    className={`${isSticky ? 'fixed left-0 right-0 py-4 z-10' : ''}`}
-                    style={{
-                        top: isSticky ? `${HEADER_HEIGHT}px` : 'auto',
-                        background: 'transparent',
-                        boxShadow: 'none'
-                    }}
-                >
-
-                    <div className="flex sm:justify-center justify-start overflow-x-auto pb-2 px-4 mb-8 space-x-4 hide-scrollbar">
-                        {categoriasFiltro.map((categoria) => (
-                            <button
-                                key={categoria}
-                                onClick={() => handleCategoryClick(categoria)}
-                                className={`px-4 py-2 rounded-full text-[16px] whitespace-nowrap text-sm transition-all duration-300 
-                                    ${categoria === categoriaActiva
-                                        ? 'bg-indigo-600 text-white transform scale-105'
-                                        : 'bg-white border border-gray-300 text-indigo-600 hover:bg-indigo-100'
-                                    } ${animatingCategory === categoria
-                                        ? 'animate-pulse'
-                                        : ''
-                                    }`}
-                            >
-                                {categoria}
-                            </button>
-                        ))}
-                    </div>
+        <section id="carta" className="w-full min-h-screen bg-white" ref={cartaRef}>
+            <div className="container mx-auto px-4 w-full max-w-7xl">
+                <div className="text-center mt-24 mb-12">
+                    <span className="text-red-700 font-medium tracking-[0.2em] text-sm uppercase">Nuestra Cocina</span>
+                    <h2 className="text-3xl md:text-4xl font-bold mt-4 text-gray-900 tracking-tight">La Carta</h2>
                 </div>
+            </div>
 
-                <div ref={contentRef} className={`mt-${FILTER_MARGIN / 4}`}>
+            <div ref={filterRef} className="sticky top-[72px] z-40 w-full bg-white shadow-[0_10px_22px_rgba(20,20,20,0.03)]">
+                <div className="mx-auto max-w-7xl px-4 py-2.5">
+                    <div className="relative">
+                        <div className="flex items-center justify-start gap-6 overflow-x-auto pr-8 md:justify-center">
+                            {gruposDisponibles.map((grupo) => {
+                                const activo = grupo.nombre === grupoActivo?.nombre;
+
+                                return (
+                                    <button
+                                        key={grupo.nombre}
+                                        onClick={() => handleGroupClick(grupo.categorias)}
+                                        className={`whitespace-nowrap px-0.5 py-2 text-[11px] font-semibold uppercase tracking-[0.1em] transition-colors duration-300
+                                            ${activo
+                                                ? 'text-red-700'
+                                                : 'text-gray-500 hover:text-gray-900'
+                                            }`}
+                                    >
+                                        {grupo.nombre}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-white/0" />
+                    </div>
+
+                    {grupoActivo && grupoActivo.categorias.length > 1 && (
+                        <div className="relative mt-2">
+                            <div className="flex items-center justify-start gap-1.5 overflow-x-auto pr-8 md:justify-center">
+                                {grupoActivo.categorias.map((categoria) => (
+                                    <button
+                                        key={categoria}
+                                        onClick={() => handleCategoryClick(categoria)}
+                                        className={`whitespace-nowrap rounded px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.08em] transition-all duration-300
+                                            ${categoria === categoriaActiva
+                                                ? 'bg-stone-900 text-white shadow-sm'
+                                                : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                                            }`}
+                                    >
+                                        {categoria}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-white/0" />
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <div className="container mx-auto px-4 w-full max-w-7xl">
+                <div ref={contentRef} className="mt-10 pb-20">
                     {categorias
                         .filter(cat => cat !== "Todos")
                         .map((categoria) => (
-                            <div key={categoria} id={`categoria-${categoria}`} className="mb-12">
-                                <h3 className="text-3xl font-semibold mb-6 text-black">{categoria}</h3>
-                                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                            <div
+                                key={categoria}
+                                id={`categoria-${categoria}`}
+                                className="mb-20"
+                                style={{ scrollMarginTop: HEADER_HEIGHT + filterHeight + 16 }}
+                            >
+                                <h3 className="text-3xl font-light mb-8 text-gray-900 tracking-tight border-b border-gray-100 pb-3">{categoria}</h3>
+                                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-12">
                                     {platos
                                         .filter(plato => plato.categoria === categoria)
                                         .map((plato) => (
-                                            <div key={plato.codigo} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-                                                <div className="relative w-full" style={{ paddingBottom: '75%' }}>
+                                            <div key={plato.codigo} className="group flex flex-col items-center text-center">
+                                                <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-full shadow-sm group-hover:shadow-xl transition-all duration-500 border-4 border-white ring-1 ring-gray-100 group-hover:ring-red-100 group-hover:border-red-50">
                                                     <Image
                                                         src={plato.imagen}
                                                         alt={plato.nombre}
-                                                        layout="fill"
-                                                        objectFit="cover"
-                                                        className="absolute top-0 left-0 w-full h-full"
+                                                        fill
+                                                        sizes="(min-width: 1280px) 224px, (min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
+                                                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                                                     />
                                                 </div>
-                                                <div className="p-4 flex flex-col flex-grow">
-                                                    <h4 className="text-sm font-semibold text-black mb-2 text-[16px]">
-                                                        {plato.codigo}. {plato.nombre}
-                                                    </h4>
-                                                    <div className="mt-auto">
-                                                        <p className="text-indigo-600 font-bold text-sm text-center text-[16px]">
-                                                            {plato.precio.toFixed(2)} €
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                                <h4 className="text-base font-medium text-gray-900 tracking-tight leading-snug px-2">
+                                                    <span className="text-red-700 font-semibold mr-1">{plato.codigo}.</span>
+                                                    {plato.nombre}
+                                                </h4>
+                                                <p className="mt-2 text-gray-500 font-light text-lg">
+                                                    {plato.precio.toFixed(2)} <span className="text-sm">€</span>
+                                                </p>
                                             </div>
                                         ))}
                                 </div>

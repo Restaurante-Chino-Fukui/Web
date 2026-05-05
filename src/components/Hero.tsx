@@ -25,7 +25,7 @@ export default function Hero() {
     }, [firebase]);
 
     return (
-        <section className="relative w-full" style={{ height: 'calc(100vh - 60px)' }}>
+        <section className="relative w-full overflow-hidden" style={{ height: 'calc(100vh - 72px)', marginTop: '72px' }}>
             {imageUrl && (
                 <div className="absolute inset-0">
                     <Image
@@ -41,16 +41,16 @@ export default function Hero() {
                     />
                 </div>
             )}
-            <div className="absolute inset-0 bg-black opacity-70"></div>
+            <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-[2px]"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white z-10">
-                    <h1 className="text-6xl font-bold mb-6">Bienvenido a FUKUI</h1>
-                    <p className="text-2xl mb-12">Descubre la mejor comida china de la zona</p>
+                <div className="text-center text-white z-10 px-4 max-w-4xl">
+                    <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">Tradición y Sabor</h1>
+                    <p className="text-xl md:text-2xl mb-10 text-gray-200 font-light">Descubre la auténtica gastronomía china en un ambiente elegante y acogedor.</p>
                     <a
                         href="tel:+34962684004"
-                        className="inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-full transition-colors text-xl shadow-lg"
+                        className="inline-block bg-red-700 hover:bg-red-800 text-white font-medium py-3 px-10 rounded-sm transition-all duration-300 text-lg shadow-[0_4px_14px_rgba(185,28,28,0.4)] hover:shadow-[0_6px_20px_rgba(185,28,28,0.6)] hover:-translate-y-0.5"
                     >
-                        Llámanos ahora
+                        Haz tu Reserva
                     </a>
                 </div>
             </div>
