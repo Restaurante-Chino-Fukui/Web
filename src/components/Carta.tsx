@@ -196,46 +196,51 @@ export default function Carta() {
     }, [categorias, categoriaActiva]);
 
     useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: `-${HEADER_HEIGHT + filterHeight}px 0px -50% 0px`,
-            threshold: 0.2
-        };
+        if (categorias.length === 0) return;
 
-        let currentlyVisible: string[] = [];
+        let frameId: number | null = null;
 
-        const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach(entry => {
-                const categoria = entry.target.id.replace('categoria-', '');
+        const updateActiveCategory = () => {
+            frameId = null;
+            const activationLine = Math.max(
+                HEADER_HEIGHT + filterHeight + 24,
+                window.innerHeight * 0.45
+            );
 
-                if (entry.isIntersecting) {
-                    if (!currentlyVisible.includes(categoria)) {
-                        currentlyVisible.push(categoria);
-                    }
+            const sections = Array.from(
+                document.querySelectorAll<HTMLElement>('[id^="categoria-"]')
+            );
+
+            let activeCategory = sections[0]?.id.replace('categoria-', '') ?? categorias[0];
+
+            for (const section of sections) {
+                const top = section.getBoundingClientRect().top;
+                if (top <= activationLine) {
+                    activeCategory = section.id.replace('categoria-', '');
                 } else {
-                    currentlyVisible = currentlyVisible.filter(cat => cat !== categoria);
-                }
-            });
-
-            if (currentlyVisible.length > 0) {
-                // Usar el primer elemento visible según el orden definido
-                const primeraCategoriaOrdenada = ordenCategorias.find(cat =>
-                    currentlyVisible.includes(cat)
-                );
-                if (primeraCategoriaOrdenada) {
-                    setCategoriaActiva(primeraCategoriaOrdenada);
+                    break;
                 }
             }
+
+            setCategoriaActiva(prev => prev === activeCategory ? prev : activeCategory);
         };
 
-        const observer = new IntersectionObserver(handleIntersect, observerOptions);
+        const requestUpdate = () => {
+            if (frameId !== null) return;
+            frameId = window.requestAnimationFrame(updateActiveCategory);
+        };
 
-        categorias.forEach(categoria => {
-            const element = document.getElementById(`categoria-${categoria}`);
-            if (element) observer.observe(element);
-        });
+        requestUpdate();
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate);
+        const intervalId = window.setInterval(requestUpdate, 250);
 
-        return () => observer.disconnect();
+        return () => {
+            if (frameId !== null) window.cancelAnimationFrame(frameId);
+            window.clearInterval(intervalId);
+            window.removeEventListener('scroll', requestUpdate);
+            window.removeEventListener('resize', requestUpdate);
+        };
     }, [categorias, filterHeight]);
 
     if (loading) return <div>Cargando menú...</div>;
