@@ -17,7 +17,7 @@ export default function Footer() {
                             <p>Av. Mediterráneo, 87</p>
                             <p>46520 Puerto de Sagunto</p>
                             <p className="pt-2 text-stone-300 font-medium">+34 962 684 004</p>
-                            <p className="pt-2 text-stone-300 font-medium">+34 961 185 629</p>
+                            <p className="pt-2 text-stone-300 font-medium">+34 961 185 620</p>
                         </div>
                     </div>
                     <div className="flex flex-col items-center md:items-end justify-center space-y-4">

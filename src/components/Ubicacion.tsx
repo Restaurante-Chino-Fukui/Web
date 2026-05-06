@@ -72,7 +72,7 @@ export default function Ubicacion() {
                                 <>
                                     <div className="space-y-1 mb-4 text-gray-600">
                                         <p>+34 962 684 004</p>
-                                        <p>+34 961 185 629</p>
+                                        <p>+34 961 185 620</p>
                                     </div>
                                     <button
                                         onClick={handleCall}
