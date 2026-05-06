@@ -11,3 +11,12 @@
 
   scrollbar-width: none;
 }
+
+img,
+picture,
+video,
+canvas,
+svg {
+  -webkit-user-drag: none;
+  user-select: none;
+}

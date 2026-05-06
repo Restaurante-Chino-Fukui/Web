@@ -1,0 +1,1218 @@
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. Please report the content of C:\Users\SHIYIC~1\AppData\Local\Temp\next-panic-d719b9dab3b7df870729964cb4d361c6.log to https://github.com/vercel/next.js/issues/new
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /favicon.ico/route
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /favicon.ico/route
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_metadata_route_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error [TurbopackInternalError]: Failed to write app endpoint /_not-found/page
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /_not-found/page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:560:15)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:576:6)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error [TurbopackInternalError]: Failed to write app endpoint /favicon.ico/route
+
+Caused by:
+- Next.js package not found
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /favicon.ico/route
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_metadata_route_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_module_options_context failed
+- Execution of get_transpiled_packages failed
+- Execution of *FileSystem::read failed
+- Execution of *FileSystemPath::fs failed
+- Execution of *FileSystemPath::join failed
+- Execution of get_next_package failed
+- Next.js package not found]
+ ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:33:11)
+    at async DevServer.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:840:4)
+    at async DevServer.findPageComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:870:8)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3993:17)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\on-demand-entry-handler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack\plugins\flight-client-entry-plugin.js
+- A:\AAAProyectos\Web\node_modules\next\dist\build\webpack-config.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\router-server.js
+- A:\AAAProyectos\Web\node_modules\next\dist\server\lib\start-server.js
+    at call (file:///A:/AAAProyectos/Web/node_modules/next/src/server/require-hook.ts:51:33)
+    at resolve (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/on-demand-entry-handler.ts:500:24)
+    at async Object.ensurePage (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/hot-reloader-turbopack.ts:884:9)
+    at async DevBundlerService.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/dev-bundler-service.ts:45:4)
+    at async DevServer.getFallbackErrorComponents (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:900:4)
+    at async DevServer.renderErrorToResponseImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:4082:33)
+    at async pipe.req.req (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:3897:25)
+    at async DevServer.pipeImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/base-server.ts:1738:20)
+    at async (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:514:13)
+    at async Span.traceAsyncFn (file:///A:/AAAProyectos/Web/node_modules/next/src/trace/trace.ts:143:13)
+    at async DevServer.handleRequest (file:///A:/AAAProyectos/Web/node_modules/next/src/server/dev/next-dev-server.ts:512:19)
+    at async invokeRender (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:284:10)
+    at async requestHandlerImpl (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/router-server.ts:589:15)
+    at async Server.requestListener (file:///A:/AAAProyectos/Web/node_modules/next/src/server/lib/start-server.ts:146:6) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ ./node_modules/next/dist/lib/require-instrumentation-client.js:11:22
+Module not found: Can't resolve 'private-next-instrumentation-client'
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. Please report the content of C:\Users\SHIYIC~1\AppData\Local\Temp\next-panic-d719b9dab3b7df870729964cb4d361c6.log to https://github.com/vercel/next.js/issues/new
+ ⨯ [Error [TurbopackInternalError]: Failed to write page endpoint /_document
+
+Caused by:
+- Expected file content at dist/lib/server-external-packages.json
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <PageEndpoint as Endpoint>::write_to_disk failed
+- Failed to write page endpoint /_document
+- Execution of PageEndpoint::output failed
+- Execution of *PageEndpoint::internal_ssr_chunk failed
+- Execution of *RuntimeEntries::resolve_entries failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_resolve_options_context failed
+- Expected file content at dist/lib/server-external-packages.json]
+ ⨯ ./node_modules/next/dist/lib/require-instrumentation-client.js:11:22
+Module not found: Can't resolve 'private-next-instrumentation-client'
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[Error [TurbopackInternalError]: Failed to write app endpoint /page
+
+Caused by:
+- Expected file content at dist/lib/server-external-packages.json
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <AppEndpoint as Endpoint>::write_to_disk failed
+- Failed to write app endpoint /page
+- Execution of AppEndpoint::output failed
+- Execution of *get_app_page_entry failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_resolve_options_context failed
+- Expected file content at dist/lib/server-external-packages.json]
+ ⨯ ./node_modules/next/dist/lib/require-instrumentation-client.js:11:22
+Module not found: Can't resolve 'private-next-instrumentation-client'
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[Error [TurbopackInternalError]: Failed to write page endpoint /_document
+
+Caused by:
+- Expected file content at dist/lib/server-external-packages.json
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <PageEndpoint as Endpoint>::write_to_disk failed
+- Failed to write page endpoint /_document
+- Execution of PageEndpoint::output failed
+- Execution of *PageEndpoint::internal_ssr_chunk failed
+- Execution of *RuntimeEntries::resolve_entries failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_resolve_options_context failed
+- Expected file content at dist/lib/server-external-packages.json]
+ ⨯ ./node_modules/next/dist/lib/require-instrumentation-client.js:11:22
+Module not found: Can't resolve 'private-next-instrumentation-client'
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[Error [TurbopackInternalError]: Failed to write page endpoint /_document
+
+Caused by:
+- Expected file content at dist/lib/server-external-packages.json
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <PageEndpoint as Endpoint>::write_to_disk failed
+- Failed to write page endpoint /_document
+- Execution of PageEndpoint::output failed
+- Execution of *PageEndpoint::internal_ssr_chunk failed
+- Execution of *RuntimeEntries::resolve_entries failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_resolve_options_context failed
+- Expected file content at dist/lib/server-external-packages.json]
+ ⨯ ./node_modules/next/dist/lib/require-instrumentation-client.js:11:22
+Module not found: Can't resolve 'private-next-instrumentation-client'
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[Error [TurbopackInternalError]: Failed to write page endpoint /_document
+
+Caused by:
+- Expected file content at dist/lib/server-external-packages.json
+
+Debug info:
+- Execution of get_written_endpoint_with_issues failed
+- Execution of <PageEndpoint as Endpoint>::write_to_disk failed
+- Failed to write page endpoint /_document
+- Execution of PageEndpoint::output failed
+- Execution of *PageEndpoint::internal_ssr_chunk failed
+- Execution of *RuntimeEntries::resolve_entries failed
+- Execution of *ModuleAssetContext::new failed
+- Execution of get_server_resolve_options_context failed
+- Expected file content at dist/lib/server-external-packages.json]

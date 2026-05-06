@@ -32,6 +32,7 @@ export default function Hero() {
                         src={imageUrl}
                         alt="Imagen de fondo de FUKUI"
                         fill
+                        draggable={false}
                         style={{
                             objectFit: 'cover',
                             objectPosition: 'center',

@@ -275,7 +275,7 @@ export default function Carta() {
                 </div>
             </div>
 
-            <div ref={filterRef} className="sticky top-[72px] z-40 w-full bg-white shadow-[0_10px_22px_rgba(20,20,20,0.03)]">
+            <div ref={filterRef} className="sticky top-[72px] z-40 w-full select-none bg-white shadow-[0_10px_22px_rgba(20,20,20,0.03)]">
                 <div className="mx-auto max-w-7xl px-4 py-2.5">
                     <div className="relative">
                         <div className="flex items-center justify-start gap-6 overflow-x-auto pr-8 md:justify-center">
@@ -286,7 +286,7 @@ export default function Carta() {
                                     <button
                                         key={grupo.nombre}
                                         onClick={() => handleGroupClick(grupo.categorias)}
-                                        className={`whitespace-nowrap px-0.5 py-2 text-[11px] font-semibold uppercase tracking-[0.1em] transition-colors duration-300
+                                        className={`select-none whitespace-nowrap px-0.5 py-2 text-[11px] font-semibold uppercase tracking-[0.1em] transition-colors duration-300
                                             ${activo
                                                 ? 'text-red-700'
                                                 : 'text-gray-500 hover:text-gray-900'
@@ -307,7 +307,7 @@ export default function Carta() {
                                     <button
                                         key={categoria}
                                         onClick={() => handleCategoryClick(categoria)}
-                                        className={`whitespace-nowrap rounded px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.08em] transition-all duration-300
+                                        className={`select-none whitespace-nowrap rounded px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.08em] transition-all duration-300
                                             ${categoria === categoriaActiva
                                                 ? 'bg-stone-900 text-white shadow-sm'
                                                 : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
@@ -345,8 +345,9 @@ export default function Carta() {
                                                         src={plato.imagen}
                                                         alt={plato.nombre}
                                                         fill
+                                                        draggable={false}
                                                         sizes="(min-width: 1280px) 224px, (min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
-                                                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                                                        className="select-none object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                                                     />
                                                 </div>
                                                 <h4 className="text-base font-medium text-gray-900 tracking-tight leading-snug px-2">
