@@ -41,3 +41,13 @@ Creating turbopack project { dir: 'A:\\AAAProyectos\\Web', testMode: true }
  ✓ Compiled in 66ms
  ✓ Compiled in 226ms
  ✓ Compiled in 54ms
+ ✓ Compiled in 101ms
+ ✓ Compiled / in 130ms
+ GET / 200 in 399ms
+ GET / 200 in 433ms
+ ✓ Compiled in 194ms
+ GET / 200 in 384ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 585ms
+ GET / 200 in 550ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1611ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 686ms

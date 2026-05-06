@@ -12,7 +12,7 @@ export default function Header() {
         } else {
             const targetElement = document.querySelector(href);
             if (targetElement) {
-                const headerOffset = 80;
+                const headerOffset = 72;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -25,29 +25,30 @@ export default function Header() {
     };
 
     return (
-        <header className="fixed top-0 left-0 right-0 w-full bg-white text-gray-800 py-5 px-6 md:px-12 z-50">
-            <div className="w-full max-w-7xl mx-auto flex justify-between items-center">
+        <header className="fixed top-0 left-0 right-0 h-[72px] w-full bg-white text-gray-800 px-5 md:px-12 z-50">
+            <div className="w-full h-full max-w-7xl mx-auto flex justify-between items-center gap-5">
                 <a
                     href="#top"
                     onClick={(e) => handleLinkClick(e, "#top")}
-                    className="text-2xl font-bold tracking-widest text-red-700 hover:text-red-800 transition-colors"
+                    className="shrink-0 text-xl md:text-2xl font-bold tracking-[0.14em] text-red-700 hover:text-red-800 transition-colors"
                 >
                     FUKUI
                 </a>
-                <nav>
-                    <ul className="flex space-x-8">
+                <nav className="min-w-0">
+                    <ul className="flex items-center gap-4 sm:gap-6 md:gap-8">
                         {[
                             { href: "#carta", text: "CARTA" },
                             { href: "#menus", text: "MENÚS" },
-                            { href: "#ubicacion", text: "EL RESTAURANTE" }
-                        ].map(({ href, text }) => (
+                            { href: "#ubicacion", text: "RESTAURANTE", desktopText: "EL RESTAURANTE" }
+                        ].map(({ href, text, desktopText }) => (
                             <li key={href}>
                                 <a
                                     href={href}
-                                    className="text-sm font-medium tracking-wide text-gray-600 hover:text-red-700 transition-colors"
+                                    className="whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-medium tracking-wide text-gray-600 hover:text-red-700 transition-colors"
                                     onClick={(e) => handleLinkClick(e, href)}
                                 >
-                                    {text}
+                                    <span className={desktopText ? "md:hidden" : undefined}>{text}</span>
+                                    {desktopText && <span className="hidden md:inline">{desktopText}</span>}
                                 </a>
                             </li>
                         ))}
