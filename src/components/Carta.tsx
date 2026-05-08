@@ -65,7 +65,7 @@ export default function Carta() {
 
     useEffect(() => {
         const CACHE_KEY = 'fukui_carta_data';
-        const CACHE_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours
+        const CACHE_EXPIRY = 4 * 60 * 60 * 1000; // 24 hours
 
         const obtenerPlatos = async () => {
             try {
